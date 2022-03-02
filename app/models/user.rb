@@ -11,7 +11,7 @@ class User < ApplicationRecord
 
   #フォローする/　されるの関係
   #has_many :任意の名前,class_name: "モデル名",この状態ではRelationshipのuser_idを探しに行ってしまうため、参照するカラムをforeign_keyで指定。
-  has_many :active_relationships,class_name: "Relationship", foreign_key: "follower_id",dependent: :destroy
+  has_many :relationships,class_name: "Relationship", foreign_key: "follower_id",dependent: :destroy
   has_many :passive_relationships, class_name: "Relationship", foreign_key: "followed_id",dependent: :destroy
 
   #最後に、以下情報が取れるようにする
@@ -20,7 +20,7 @@ class User < ApplicationRecord
 #ここでrailsはfollowings、followersの表記より、
 #(単数形)_idがRelationshipテーブルにあるかを探しに行くが、followingsの方は存在していない。
 #そのため、sourceを用いて、Relationshipテーブルの参照先カラムを指定する。
-  has_many :followings, through: :active_relationships, source: :followed
+  has_many :followings, through: :relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
 
 
@@ -37,7 +37,7 @@ class User < ApplicationRecord
 
   # フォローしたときの処理
 def follow(user_id)
-  relationships.create(followed_id: user_id)
+  self.relationships.create(followed_id: user_id)
 end
 # フォローを外すときの処理
 def unfollow(user_id)
