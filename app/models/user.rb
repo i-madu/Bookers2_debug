@@ -37,7 +37,7 @@ class User < ApplicationRecord
 
   # フォローしたときの処理
 def follow(user_id)
-  self.relationships.create(followed_id: user_id)
+  relationships.create(followed_id: user_id)
 end
 # フォローを外すときの処理
 def unfollow(user_id)
@@ -47,6 +47,23 @@ end
 def following?(user)
   followings.include?(user)
 end
+
+
+# 検索方法分岐定義
+  def self.looks(search, word)
+    if search == "perfect_match"
+      @user = User.where("name LIKE?", "#{word}")
+    elsif search == "forward_match"
+      @user = User.where("name LIKE?","#{word}%")
+    elsif search == "backward_match"
+      @user = User.where("name LIKE?","%#{word}")
+    elsif search == "partial_match"
+      @user = User.where("name LIKE?","%#{word}%")
+    else
+      @user = User.all
+    end
+  end
+
 
 
 

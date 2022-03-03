@@ -1,0 +1,47 @@
+<h2>Search Results</h2>
+
+<table class="table table-hover table-inverse">
+  <!--検索対象モデルがUserの時 -->
+  <% if @range == "User" %>
+  <thead>
+    <tr>
+      <th></th>
+      <th>Name</th>
+      <th></th>
+    </tr>
+  </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= image_tag user.get_profile_image, size: '50x50' %></td>
+          <td><%= user.name %></td>
+          <td>
+            <%= link_to "Show",user_path(user) %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  <% else %>
+    <!--検索対象モデルがUserではない時(= 検索対象モデルがBookの時) -->
+    <thead>
+    <tr>
+      <th></th>
+      <th>Title</th>
+      <th>Opinion</th>
+    </tr>
+  </thead>
+    <tbody>
+      <% @books.each do |book| %>
+        <tr>
+          <td><%= image_tag book.user.get_profile_image, size: '50x50' %></td>
+          <td>
+            <%= link_to book_path(book) do %>
+            <%= book.title %>
+            <% end %>
+            </td>
+          <td><%= book.body %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  <% end %>
+</table>
