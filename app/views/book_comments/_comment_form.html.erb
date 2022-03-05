@@ -1,0 +1,7 @@
+<%= form_with model: [book, book_comment],local: false do |f| %>
+      <div class="form-group">
+      <%= f.text_area :comment, rows: '5',:size => "80%" %>
+      </div>
+
+      <%= f.submit "投稿" %>
+      <% end %>

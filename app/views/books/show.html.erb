@@ -28,38 +28,17 @@
             <% end %>
         </tr>
       </table>
-
-    <div class ="col-md-8 mt-4">
-      <h2 class="pb-3">Comment</h2>
-      <table class= "table">
-        <tbody>
-          <% @book.book_comments.each do |book_comment| %>
-          <tr>
-            <td>
-              <%= link_to user_path(book_comment.user) do %>
-                <%= image_tag book_comment.user.get_profile_image, size:"50x50" %><br>
-                <%= book_comment.user.name %>
-              <% end %>
-            </td>
-            <td><%= book_comment.comment %></td>
-            <% if book_comment.user == current_user %>
-            <td><%= link_to "Destroy",book_book_comment_path(book_comment),method: :delete, data: { confirm: "本当に削除しますか？"}, class: "btn btn-sm btn-danger" %></td>
-            <% end %>
-          </tr>
-          <% end %>
-        </tbody>
-      </table>
-
-      <%= form_with model: [@book, @book_comment] do |f| %>
-      <div class="form-group">
-      <%= f.text_area :comment, rows: '5',:size => "80%" %>
+      <div class ="col-md-8 mt-4">
+        <h2 class="pb-3">Comment</h2>
+      <div id="comment_area">
+        <%= render "book_comments/comment",book: @book %>
       </div>
-
-      <%= f.submit "投稿" %>
-      <% end %>
+      
+      <div id="comments_form">
+        <%= render "book_comments/comment_form",book: @book, book_comment: @book_comment %>
+      </div>
+        
     </div>
-    </div>
-
 
   </div>
 </div>
