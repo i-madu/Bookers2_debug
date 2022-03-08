@@ -1,5 +1,5 @@
 class SearchesController < ApplicationController
- before_action :authenticate_user!,except: []
+ before_action :authenticate_user!,except: [:index, :show, :followers, :followings]
 
 def search
   @range = params[:range]
@@ -11,3 +11,6 @@ def search
 end
 
 end
+
+
+#明日ここ消す！
