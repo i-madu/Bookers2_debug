@@ -4,10 +4,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-
   has_many :books, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :book_comments, dependent: :destroy
+  has_many :reviews,dependent: :destroy
 
   #フォローする/　されるの関係
   #has_many :任意の名前,class_name: "モデル名",この状態ではRelationshipのuser_idを探しに行ってしまうため、参照するカラムをforeign_keyで指定。
