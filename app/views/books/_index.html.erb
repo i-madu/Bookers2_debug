@@ -19,8 +19,8 @@
         <td id="favorite_buttons_<%= book.id %>">
           <%= render "favorites/favorite",book: book %></td>
         <td>コメント件数：<%= book.book_comments.count %></td>
-        <td id="star-rate<%= book.id %>"></td>
-        <%= render "reviews/review",book: book %>
+        <td><%= render "books/star",book: book %></td>
+
       </tr>
     <% end %>
   </tbody>

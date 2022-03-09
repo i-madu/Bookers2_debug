@@ -1,0 +1,12 @@
+<!-- 繰り返し処理を実行してもidを一意に保てるようにbook.idを埋め込む -->
+<div id="star-rate<%= book.id%>" class="form-group"></div>
+    <script>
+      $('#star-rate<%= book.id%>').raty({
+        size      : 20,
+        starOff   : '<%= asset_path('star-off.png') %>',
+        starOn    : '<%= asset_path('star-on.png') %>',
+        half      : false,
+        readOnly: true,
+        score: <%= book.star %>,
+      });
+    </script>

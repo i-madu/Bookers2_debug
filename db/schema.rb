@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 2022_03_09_002459) do
     t.string "title"
     t.text "body"
     t.integer "user_id"
+    t.integer "star"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

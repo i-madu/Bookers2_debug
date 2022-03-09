@@ -9,7 +9,7 @@
   </div>
 
 
-
+<% if book.id == nil %>
   <!--評価-->
   <div class="form-group" id="star">
     <%= f.label :star,'Rate' %>
@@ -19,15 +19,18 @@
   <!-- 評価javascript -->
   <script>
   $('#star').raty({
-    size     : 36,  //星のサイズ
+    size     : 20,  //星のサイズ
     starOff:  '<%= asset_path('star-off.png') %>',  //imagesフォルダより星画像の呼び出し
     starOn : '<%= asset_path('star-on.png') %>',
 
-    scoreName: 'review[star]',  //reviewモデルのcomfortカラムに保存
+    scoreName: 'book[star]',  //bookモデルのstarカラムに保存
     half: false,  //星半分を許可しない
   });
   </script>
-  
+  <% else %>
+    <%= render "books/star", book: book %>
+  <% end %>
+
   <div class="form-group">
     <%= f.submit class: 'btn btn-success' %>
   </div>
