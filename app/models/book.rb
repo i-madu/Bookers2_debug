@@ -28,6 +28,11 @@ class Book < ApplicationRecord
     end
   end
 
+  # ソート機能
+  scope :latest, -> {order(created_at: :desc)}
+  scope :stars, -> {order(star: :desc)}
+
+
 
 
 end
