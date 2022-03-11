@@ -12,16 +12,13 @@ class BooksController < ApplicationController
     @book = Book.new
     if params[:sort_create]
        @books = Book.latest
+
+    elsif params[:sort_star]
+          @books = Book.stars
+
     else
       @books = Book.all
     end
-
-    if params[:sort_star]
-       @books = Book.stars
-    else
-       @books = Book.all
-    end
-
 
   end
 

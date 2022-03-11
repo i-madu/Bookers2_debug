@@ -34,5 +34,4 @@ class Book < ApplicationRecord
 
 
 
-
 end
